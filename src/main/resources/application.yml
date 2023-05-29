@@ -1,0 +1,23 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/healthcheck?profileSQL=true&logger=Slf4JLogger&maxQuerySizeToLog=1000
+#    url: jdbc:mysql://host.docker.internal:3306/healthcheck  # docker로 app을 실행시킬 때 host에 이미 실행 중인 mysql 서버와 통신하기 위해 사용된다.
+#    url: jdbc:mysql://hc-mysql:3306/healthcheck  # docker에서 구동하는 mysql에 접속하기 위한 url
+    username: root
+    password:
+
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    open-in-view: false
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    properties:
+      hibernate:
+        default_batch_fetch_size: 100
+        format_sql: true
